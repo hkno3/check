@@ -308,7 +308,7 @@
         // 진단 페이지 열기
         function openDiagnosis(type) {
             if (diagnosisUrls[type]) {
-                window.open(diagnosisUrls[type];
+                window.location.href = diagnosisUrls[type];
             } else {
                 alert('해당 진단 페이지를 준비 중입니다. 곧 서비스를 시작할 예정입니다!');
             }
