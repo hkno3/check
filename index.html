@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>건강 자가진단 체크</title>
+    <title>질병 자가진단 체크리스트</title>
+    <meta name="description" content="다양한 질병의 초기 증상을 자가진단해보세요. 조기 발견과 예방을 위한 체크리스트를 제공합니다.">
+    
     <style>
         * {
             margin: 0;
@@ -37,6 +39,13 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .disclaimer {
             background: #ff6b6b;
             color: white;
@@ -47,11 +56,6 @@
             font-weight: bold;
         }
 
-        .disclaimer-icon {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
         .main-content {
             background: white;
             border-radius: 15px;
@@ -59,230 +63,128 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .category-card {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .category-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .category-card p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .quiz-container {
-            display: none;
-            background: #f8f9ff;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 20px;
-        }
-
-        .quiz-header {
+        .intro-section {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        .quiz-header h2 {
-            color: #4c63d2;
-            margin-bottom: 10px;
-        }
-
-        .progress-bar {
-            background: #e0e0e0;
-            height: 8px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background: linear-gradient(90deg, #4c63d2, #667eea);
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .question {
-            display: none;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .question.active {
-            display: block;
-        }
-
-        .question h4 {
+        .intro-section h2 {
+            font-size: 1.8rem;
             color: #333;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .option {
-            padding: 15px;
-            background: #f5f5f5;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .option:hover {
-            background: #e8f2ff;
-            border-color: #4c63d2;
-        }
-
-        .option.selected {
-            background: #4c63d2;
-            color: white;
-            border-color: #4c63d2;
-        }
-
-        .quiz-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: #4c63d2;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #3d52c4;
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        .result-container {
-            display: none;
-            text-align: center;
-            padding: 30px;
-            background: white;
-            border-radius: 15px;
-            margin-top: 20px;
-        }
-
-        .result-score {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .result-low { color: #28a745; }
-        .result-medium { color: #ffc107; }
-        .result-high { color: #dc3545; }
-
-        .result-description {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .recommendations {
-            text-align: left;
-            background: #e8f5e8;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .recommendations h4 {
-            color: #28a745;
             margin-bottom: 15px;
         }
 
-        .recommendations ul {
-            list-style-type: none;
-            padding: 0;
+        .intro-section p {
+            color: #666;
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .recommendations li {
-            padding: 8px 0;
-            border-bottom: 1px solid #d4edda;
+        .diagnosis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
         }
 
-        .recommendations li:before {
-            content: "✓ ";
-            color: #28a745;
-            font-weight: bold;
+        .diagnosis-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .diagnosis-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+            color: white;
+        }
+
+        /* 다양한 색상 조합 */
+        .diagnosis-btn:nth-child(3n+1) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .diagnosis-btn:nth-child(3n+2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .diagnosis-btn:nth-child(3n+3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .diagnosis-btn:nth-child(6n+4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .diagnosis-btn:nth-child(6n+5) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .diagnosis-btn:nth-child(6n+6) {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
 
         .footer {
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-            padding: 20px;
             background: rgba(0,0,0,0.1);
             border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            color: white;
+            text-align: center;
         }
 
+        .footer h4 {
+            margin-bottom: 10px;
+        }
+
+        .emergency {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        /* 반응형 디자인 */
         @media (max-width: 768px) {
+            .diagnosis-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
             .header h1 {
                 font-size: 2rem;
             }
             
-            .category-grid {
+            .main-content {
+                padding: 20px;
+            }
+            
+            .diagnosis-btn {
+                font-size: 0.9rem;
+                padding: 12px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .diagnosis-grid {
                 grid-template-columns: 1fr;
             }
             
-            .main-content {
-                padding: 20px;
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -290,707 +192,132 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏥 건강 자가진단 체크</h1>
-            <p>간단한 자가진단을 통해 건강 상태를 확인해보세요</p>
+            <h1>🏥 질병 자가진단 체크리스트</h1>
+            <p>다양한 질병의 초기 증상을 체크하고 조기 발견에 도움을 받으세요</p>
         </div>
 
         <div class="disclaimer">
-            <div class="disclaimer-icon">⚠️</div>
-            <div>
-                <strong>중요 안내사항</strong><br>
-                본 자가진단은 참고용이며 의학적 진단을 대체할 수 없습니다.<br>
-                심각한 증상이 있다면 반드시 의료진과 상담하시기 바랍니다.
-            </div>
+            ⚠️ <strong>중요:</strong> 본 자가진단은 참고용이며 의학적 진단을 대체할 수 없습니다. 증상이 지속되면 반드시 의료진과 상담하세요.
         </div>
 
         <div class="main-content">
-            <div id="categorySelection">
-                <h2 style="text-align: center; margin-bottom: 30px; color: #333;">진단 카테고리를 선택하세요</h2>
-                
-                <div class="category-grid">
-                    <div class="category-card" onclick="startQuiz('stress')">
-                        <h3>🧠 스트레스 수준 진단</h3>
-                        <p>일상 스트레스 정도와 대처 능력을 평가합니다</p>
-                    </div>
-                    
-                    <div class="category-card" onclick="startQuiz('sleep')">
-                        <h3>😴 수면의 질 진단</h3>
-                        <p>수면 패턴과 수면의 질을 종합적으로 평가합니다</p>
-                    </div>
-                    
-                    <div class="category-card" onclick="startQuiz('exercise')">
-                        <h3>💪 운동습관 진단</h3>
-                        <p>신체활동 수준과 운동습관의 건강도를 체크합니다</p>
-                    </div>
-                    
-                    <div class="category-card" onclick="startQuiz('nutrition')">
-                        <h3>🥗 식습관 진단</h3>
-                        <p>영양 균형과 식사 패턴의 건강성을 평가합니다</p>
-                    </div>
-                    
-                    <div class="category-card" onclick="startQuiz('digital')">
-                        <h3>📱 디지털 웰빙 진단</h3>
-                        <p>스마트폰 사용 습관과 디지털 의존도를 체크합니다</p>
-                    </div>
-                    
-                    <div class="category-card" onclick="startQuiz('fatigue')">
-                        <h3>😵 피로도 진단</h3>
-                        <p>만성피로 증상과 에너지 수준을 평가합니다</p>
-                    </div>
-                </div>
+            <div class="intro-section">
+                <h2>질병별 자가진단 체크리스트</h2>
+                <p>각 질병의 초기 증상과 위험 요인을 체크해보세요. 조기 발견이 치료의 핵심입니다.</p>
             </div>
 
-            <div id="quizContainer" class="quiz-container">
-                <div class="quiz-header">
-                    <h2 id="quizTitle"></h2>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
-                    <p id="progressText">1 / 10</p>
-                </div>
-
-                <div id="questionsContainer"></div>
-
-                <div class="quiz-buttons">
-                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>이전</button>
-                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
-                </div>
-            </div>
-
-            <div id="resultContainer" class="result-container">
-                <div id="resultScore" class="result-score"></div>
-                <div id="resultDescription" class="result-description"></div>
-                <div id="recommendations" class="recommendations"></div>
-                <button class="btn btn-primary" onclick="resetQuiz()" style="margin-top: 20px;">다른 진단 받기</button>
+            <div class="diagnosis-grid">
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('thyroid-hyper')">갑상선 항진증 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('thyroid-hypo')">갑상선 저하증 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('diabetes')">당뇨병 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('hypertension')">고혈압 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('depression')">우울증 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('anxiety')">불안장애 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('panic')">공황장애 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('adhd')">ADHD 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('dementia')">치매 초기증상 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('osteoporosis')">골다공증 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('arthritis')">관절염 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('gastritis')">위염 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('gerd')">역류성 식도염 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('ibs')">과민성 대장증후군 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('migraine')">편두통 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('sleep-apnea')">수면무호흡증 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('insomnia')">불면증 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('asthma')">천식 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('copd')">만성폐쇄성폐질환 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('allergic-rhinitis')">알레르기 비염 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('atopic-dermatitis')">아토피 피부염 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('psoriasis')">건선 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('hair-loss')">탈모 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('fatty-liver')">지방간 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('kidney-disease')">신장질환 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('anemia')">빈혈 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('heart-disease')">심장질환 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('stroke-risk')">뇌졸중 위험도 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('varicose-veins')">하지정맥류 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('carpal-tunnel')">손목터널증후군 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('herniated-disc')">디스크 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('cervical-disc')">목디스크 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('frozen-shoulder')">오십견 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('plantar-fasciitis')">족저근막염 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('menopause')">갱년기 증상 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('pcos')">다낭성 난소증후군 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('endometriosis')">자궁내막증 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('prostate')">전립선 질환 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('erectile-dysfunction')">발기부전 자가진단 체크리스트</a>
+                <a href="#" class="diagnosis-btn" onclick="openDiagnosis('eye-strain')">안구건조증 자가진단 체크리스트</a>
             </div>
         </div>
 
         <div class="footer">
-            <p><strong>개인정보 보호:</strong> 모든 진단 결과는 로컬에서만 처리되며 서버로 전송되지 않습니다.</p>
-            <p><strong>응급상황:</strong> 생명이 위험한 응급상황에서는 즉시 119에 신고하시기 바랍니다.</p>
+            <h4>🚨 응급상황 안내</h4>
+            <p>생명이 위험한 응급상황에서는 즉시 <span class="emergency">119</span>에 신고하시기 바랍니다.</p>
+            <p style="margin-top: 10px;">본 자가진단은 참고용이며, 정확한 진단을 위해서는 의료기관 방문을 권장합니다.</p>
         </div>
     </div>
 
     <script>
-        // 전역 변수
-        let currentQuiz = '';
-        let currentQuestion = 0;
-        let answers = [];
-        let quizData = {};
-
-        // 진단 데이터 정의
-        const quizzes = {
-            stress: {
-                title: '스트레스 수준 진단',
-                questions: [
-                    {
-                        question: '최근 한 달간 스트레스를 얼마나 자주 느꼈습니까?',
-                        options: [
-                            { text: '거의 느끼지 않았다', score: 0 },
-                            { text: '가끔 느꼈다', score: 1 },
-                            { text: '자주 느꼈다', score: 2 },
-                            { text: '매일 느꼈다', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '스트레스로 인해 잠들기 어려웠던 적이 있습니까?',
-                        options: [
-                            { text: '전혀 없었다', score: 0 },
-                            { text: '가끔 있었다', score: 1 },
-                            { text: '자주 있었다', score: 2 },
-                            { text: '매일 있었다', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '스트레스로 인해 식욕에 변화가 있었습니까?',
-                        options: [
-                            { text: '변화가 없었다', score: 0 },
-                            { text: '조금 변했다', score: 1 },
-                            { text: '많이 변했다', score: 2 },
-                            { text: '극심하게 변했다', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '일상생활에서 짜증이나 화를 내는 빈도는?',
-                        options: [
-                            { text: '거의 없다', score: 0 },
-                            { text: '가끔 있다', score: 1 },
-                            { text: '자주 있다', score: 2 },
-                            { text: '매일 있다', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '업무나 학업에 집중하기 어려웠던 적이 있습니까?',
-                        options: [
-                            { text: '전혀 없었다', score: 0 },
-                            { text: '가끔 있었다', score: 1 },
-                            { text: '자주 있었다', score: 2 },
-                            { text: '항상 그랬다', score: 3 }
-                        ]
-                    }
-                ],
-                scoring: {
-                    low: { max: 5, level: '건강함', description: '디지털 기기를 건강하게 사용하고 계십니다. 현재 상태를 유지하세요.' },
-                    medium: { max: 10, level: '주의', description: '디지털 기기 사용에 주의가 필요합니다. 사용 시간을 줄여보세요.' },
-                    high: { max: 15, level: '위험', description: '디지털 의존도가 높습니다. 디지털 디톡스가 필요합니다.' }
-                },
-                recommendations: [
-                    '스마트폰 사용 시간 제한 설정하기',
-                    '잠들기 1시간 전부터 디지털 기기 사용 금지',
-                    '식사 시간에는 스마트폰 멀리 두기',
-                    '알림 기능 최소화하기',
-                    '디지털 프리 시간대 만들기',
-                    '오프라인 취미 활동 늘리기'
-                ]
-            },
-            fatigue: {
-                title: '피로도 진단',
-                questions: [
-                    {
-                        question: '아침에 일어났을 때 피로감은?',
-                        options: [
-                            { text: '전혀 피곤하지 않음', score: 0 },
-                            { text: '약간 피곤함', score: 1 },
-                            { text: '꽤 피곤함', score: 2 },
-                            { text: '매우 피곤함', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '일상 활동 중 피로감은?',
-                        options: [
-                            { text: '거의 느끼지 않음', score: 0 },
-                            { text: '가끔 느낌', score: 1 },
-                            { text: '자주 느낌', score: 2 },
-                            { text: '항상 피곤함', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '집중력이나 기억력에 문제가 있나요?',
-                        options: [
-                            { text: '전혀 없음', score: 0 },
-                            { text: '가끔 있음', score: 1 },
-                            { text: '자주 있음', score: 2 },
-                            { text: '항상 문제됨', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '충분히 쉬어도 피로가 회복되지 않나요?',
-                        options: [
-                            { text: '금방 회복됨', score: 0 },
-                            { text: '조금 시간이 걸림', score: 1 },
-                            { text: '오래 걸림', score: 2 },
-                            { text: '회복되지 않음', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '최근 몇 개월간 지속적인 피로를 느끼고 있나요?',
-                        options: [
-                            { text: '전혀 그렇지 않음', score: 0 },
-                            { text: '가끔 그럼', score: 1 },
-                            { text: '자주 그럼', score: 2 },
-                            { text: '항상 그럼', score: 3 }
-                        ]
-                    }
-                ],
-                scoring: {
-                    low: { max: 5, level: '정상', description: '피로도가 정상 범위입니다. 현재 생활 패턴을 잘 유지하세요.' },
-                    medium: { max: 10, level: '주의', description: '약간의 피로 누적이 있습니다. 휴식과 회복에 신경쓰세요.' },
-                    high: { max: 15, level: '심각', description: '만성피로 증상이 의심됩니다. 의료진과 상담을 권합니다.' }
-                },
-                recommendations: [
-                    '규칙적인 수면 패턴 유지하기',
-                    '적절한 운동으로 체력 증진하기',
-                    '균형 잡힌 영양 섭취하기',
-                    '스트레스 관리 방법 익히기',
-                    '정기적인 휴식 시간 갖기',
-                    '과로 피하고 적절한 업무량 조절하기'
-                ]
-            }
+        // 워드프레스 블로그 URL 설정
+        const BLOG_BASE_URL = 'https://your-wordpress-blog.com';
+        
+        // 각 진단별 워드프레스 글 URL 매핑
+        const diagnosisUrls = {
+            'thyroid-hyper': `${BLOG_BASE_URL}/thyroid-hyperthyroidism-diagnosis`,
+            'thyroid-hypo': `${BLOG_BASE_URL}/thyroid-hypothyroidism-diagnosis`,
+            'diabetes': `${BLOG_BASE_URL}/diabetes-diagnosis`,
+            'hypertension': `${BLOG_BASE_URL}/hypertension-diagnosis`,
+            'depression': `${BLOG_BASE_URL}/depression-diagnosis`,
+            'anxiety': `${BLOG_BASE_URL}/anxiety-disorder-diagnosis`,
+            'panic': `${BLOG_BASE_URL}/panic-disorder-diagnosis`,
+            'adhd': `${BLOG_BASE_URL}/adhd-diagnosis`,
+            'dementia': `${BLOG_BASE_URL}/dementia-early-symptoms-diagnosis`,
+            'osteoporosis': `${BLOG_BASE_URL}/osteoporosis-diagnosis`,
+            'arthritis': `${BLOG_BASE_URL}/arthritis-diagnosis`,
+            'gastritis': `${BLOG_BASE_URL}/gastritis-diagnosis`,
+            'gerd': `${BLOG_BASE_URL}/gerd-diagnosis`,
+            'ibs': `${BLOG_BASE_URL}/ibs-diagnosis`,
+            'migraine': `${BLOG_BASE_URL}/migraine-diagnosis`,
+            'sleep-apnea': `${BLOG_BASE_URL}/sleep-apnea-diagnosis`,
+            'insomnia': `${BLOG_BASE_URL}/insomnia-diagnosis`,
+            'asthma': `${BLOG_BASE_URL}/asthma-diagnosis`,
+            'copd': `${BLOG_BASE_URL}/copd-diagnosis`,
+            'allergic-rhinitis': `${BLOG_BASE_URL}/allergic-rhinitis-diagnosis`,
+            'atopic-dermatitis': `${BLOG_BASE_URL}/atopic-dermatitis-diagnosis`,
+            'psoriasis': `${BLOG_BASE_URL}/psoriasis-diagnosis`,
+            'hair-loss': `${BLOG_BASE_URL}/hair-loss-diagnosis`,
+            'fatty-liver': `${BLOG_BASE_URL}/fatty-liver-diagnosis`,
+            'kidney-disease': `${BLOG_BASE_URL}/kidney-disease-diagnosis`,
+            'anemia': `${BLOG_BASE_URL}/anemia-diagnosis`,
+            'heart-disease': `${BLOG_BASE_URL}/heart-disease-diagnosis`,
+            'stroke-risk': `${BLOG_BASE_URL}/stroke-risk-diagnosis`,
+            'varicose-veins': `${BLOG_BASE_URL}/varicose-veins-diagnosis`,
+            'carpal-tunnel': `${BLOG_BASE_URL}/carpal-tunnel-diagnosis`,
+            'herniated-disc': `${BLOG_BASE_URL}/herniated-disc-diagnosis`,
+            'cervical-disc': `${BLOG_BASE_URL}/cervical-disc-diagnosis`,
+            'frozen-shoulder': `${BLOG_BASE_URL}/frozen-shoulder-diagnosis`,
+            'plantar-fasciitis': `${BLOG_BASE_URL}/plantar-fasciitis-diagnosis`,
+            'menopause': `${BLOG_BASE_URL}/menopause-symptoms-diagnosis`,
+            'pcos': `${BLOG_BASE_URL}/pcos-diagnosis`,
+            'endometriosis': `${BLOG_BASE_URL}/endometriosis-diagnosis`,
+            'prostate': `${BLOG_BASE_URL}/prostate-disease-diagnosis`,
+            'erectile-dysfunction': `${BLOG_BASE_URL}/erectile-dysfunction-diagnosis`,
+            'eye-strain': `${BLOG_BASE_URL}/dry-eye-syndrome-diagnosis`
         };
 
-        // 퀴즈 시작 함수
-        function startQuiz(quizType) {
-            currentQuiz = quizType;
-            currentQuestion = 0;
-            answers = [];
-            
-            const quiz = quizzes[quizType];
-            document.getElementById('quizTitle').textContent = quiz.title;
-            
-            // 카테고리 선택 숨기고 퀴즈 컨테이너 표시
-            document.getElementById('categorySelection').style.display = 'none';
-            document.getElementById('quizContainer').style.display = 'block';
-            
-            // 질문 생성
-            generateQuestions(quiz);
-            
-            // 첫 번째 질문 표시
-            showQuestion(0);
-            updateProgress();
-        }
-
-        // 질문 생성 함수
-        function generateQuestions(quiz) {
-            const container = document.getElementById('questionsContainer');
-            container.innerHTML = '';
-            
-            quiz.questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.id = `question-${index}`;
-                
-                questionDiv.innerHTML = `
-                    <h4>${q.question}</h4>
-                    <div class="options">
-                        ${q.options.map((option, optIndex) => `
-                            <div class="option" onclick="selectOption(${index}, ${optIndex}, ${option.score})">
-                                ${option.text}
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                
-                container.appendChild(questionDiv);
-            });
-        }
-
-        // 질문 표시 함수
-        function showQuestion(index) {
-            // 모든 질문 숨기기
-            document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
-            
-            // 현재 질문 표시
-            const currentQ = document.getElementById(`question-${index}`);
-            if (currentQ) {
-                currentQ.classList.add('active');
-            }
-            
-            // 버튼 상태 업데이트
-            updateButtons();
-        }
-
-        // 옵션 선택 함수
-        function selectOption(questionIndex, optionIndex, score) {
-            // 이전 선택 제거
-            const question = document.getElementById(`question-${questionIndex}`);
-            question.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-            
-            // 현재 선택 표시
-            question.querySelectorAll('.option')[optionIndex].classList.add('selected');
-            
-            // 답변 저장
-            answers[questionIndex] = score;
-            
-            // 버튼 상태 업데이트
-            updateButtons();
-        }
-
-        // 다음 질문
-        function nextQuestion() {
-            const quiz = quizzes[currentQuiz];
-            
-            if (currentQuestion < quiz.questions.length - 1) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-                updateProgress();
+        // 진단 페이지 열기
+        function openDiagnosis(type) {
+            if (diagnosisUrls[type]) {
+                window.open(diagnosisUrls[type], '_blank');
             } else {
-                // 퀴즈 완료
-                showResult();
+                alert('해당 진단 페이지를 준비 중입니다. 곧 서비스를 시작할 예정입니다!');
             }
-        }
-
-        // 이전 질문
-        function previousQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                showQuestion(currentQuestion);
-                updateProgress();
-            }
-        }
-
-        // 진행률 업데이트
-        function updateProgress() {
-            const quiz = quizzes[currentQuiz];
-            const progress = ((currentQuestion + 1) / quiz.questions.length) * 100;
-            
-            document.getElementById('progressFill').style.width = `${progress}%`;
-            document.getElementById('progressText').textContent = `${currentQuestion + 1} / ${quiz.questions.length}`;
-        }
-
-        // 버튼 상태 업데이트
-        function updateButtons() {
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const quiz = quizzes[currentQuiz];
-            
-            // 이전 버튼
-            prevBtn.disabled = currentQuestion === 0;
-            
-            // 다음 버튼
-            const hasAnswer = answers[currentQuestion] !== undefined;
-            nextBtn.disabled = !hasAnswer;
-            
-            // 마지막 질문인 경우 버튼 텍스트 변경
-            if (currentQuestion === quiz.questions.length - 1) {
-                nextBtn.textContent = '결과보기';
-            } else {
-                nextBtn.textContent = '다음';
-            }
-        }
-
-        // 결과 표시
-        function showResult() {
-            const quiz = quizzes[currentQuiz];
-            const totalScore = answers.reduce((sum, score) => sum + score, 0);
-            
-            // 결과 등급 계산
-            let resultLevel, resultClass;
-            if (totalScore <= quiz.scoring.low.max) {
-                resultLevel = quiz.scoring.low;
-                resultClass = 'result-low';
-            } else if (totalScore <= quiz.scoring.medium.max) {
-                resultLevel = quiz.scoring.medium;
-                resultClass = 'result-medium';
-            } else {
-                resultLevel = quiz.scoring.high;
-                resultClass = 'result-high';
-            }
-            
-            // 퀴즈 컨테이너 숨기고 결과 컨테이너 표시
-            document.getElementById('quizContainer').style.display = 'none';
-            document.getElementById('resultContainer').style.display = 'block';
-            
-            // 결과 표시
-            document.getElementById('resultScore').innerHTML = `
-                <div class="${resultClass}">${totalScore}점</div>
-                <div style="font-size: 1.5rem; margin-top: 10px;">${resultLevel.level}</div>
-            `;
-            
-            document.getElementById('resultDescription').textContent = resultLevel.description;
-            
-            // 권장사항 표시
-            const recommendationsHtml = `
-                <h4>🌟 개선 권장사항</h4>
-                <ul>
-                    ${quiz.recommendations.map(rec => `<li>${rec}</li>`).join('')}
-                </ul>
-            `;
-            document.getElementById('recommendations').innerHTML = recommendationsHtml;
-            
-            // 결과를 로컬 스토리지에 저장 (선택사항)
-            saveResult(currentQuiz, totalScore, resultLevel.level);
-        }
-
-        // 결과 저장 (로컬에서만)
-        function saveResult(quizType, score, level) {
-            const result = {
-                date: new Date().toISOString().split('T')[0],
-                quiz: quizType,
-                score: score,
-                level: level
-            };
-            
-            // 로컬 스토리지에 저장
-            let results = JSON.parse(localStorage.getItem('healthDiagnosisResults') || '[]');
-            results.push(result);
-            
-            // 최근 10개 결과만 유지
-            if (results.length > 10) {
-                results = results.slice(-10);
-            }
-            
-            localStorage.setItem('healthDiagnosisResults', JSON.stringify(results));
-        }
-
-        // 퀴즈 리셋
-        function resetQuiz() {
-            currentQuiz = '';
-            currentQuestion = 0;
-            answers = [];
-            
-            // 모든 컨테이너 숨기기
-            document.getElementById('quizContainer').style.display = 'none';
-            document.getElementById('resultContainer').style.display = 'none';
-            
-            // 카테고리 선택 표시
-            document.getElementById('categorySelection').style.display = 'block';
         }
 
         // 페이지 로드 시 초기화
         document.addEventListener('DOMContentLoaded', function() {
-            // 개인정보 보호 알림
             console.log('🔒 개인정보 보호: 모든 데이터는 브라우저에서만 처리됩니다.');
-            
-            // 접근성 개선
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && e.target.classList.contains('option')) {
-                    e.target.click();
-                }
-            });
-        });
-
-        // 키보드 네비게이션 지원
-        document.addEventListener('keydown', function(e) {
-            if (document.getElementById('quizContainer').style.display === 'block') {
-                if (e.key === 'ArrowLeft' && !document.getElementById('prevBtn').disabled) {
-                    previousQuestion();
-                } else if (e.key === 'ArrowRight' && !document.getElementById('nextBtn').disabled) {
-                    nextQuestion();
-                }
-            }
         });
     </script>
 </body>
 </html>
-                    low: { max: 5, level: '낮음', description: '스트레스 수준이 낮습니다. 현재 상태를 잘 유지하고 계십니다.' },
-                    medium: { max: 10, level: '보통', description: '적당한 수준의 스트레스가 있습니다. 스트레스 관리 방법을 배워보시는 것이 좋겠습니다.' },
-                    high: { max: 15, level: '높음', description: '스트레스 수준이 높습니다. 전문가의 도움을 받아보시는 것을 권합니다.' }
-                },
-                recommendations: [
-                    '규칙적인 운동으로 스트레스 해소하기',
-                    '충분한 수면 시간 확보하기 (7-8시간)',
-                    '명상이나 깊은 호흡 연습하기',
-                    '취미 활동이나 여가 시간 갖기',
-                    '가족이나 친구와 대화 나누기',
-                    '필요시 전문 상담사와 상담받기'
-                ]
-            },
-            sleep: {
-                title: '수면의 질 진단',
-                questions: [
-                    {
-                        question: '평소 잠들기까지 얼마나 걸립니까?',
-                        options: [
-                            { text: '15분 이내', score: 0 },
-                            { text: '15-30분', score: 1 },
-                            { text: '30분-1시간', score: 2 },
-                            { text: '1시간 이상', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '밤중에 깨는 횟수는?',
-                        options: [
-                            { text: '거의 깨지 않음', score: 0 },
-                            { text: '1-2번', score: 1 },
-                            { text: '3-4번', score: 2 },
-                            { text: '5번 이상', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '아침에 일어났을 때 기분은?',
-                        options: [
-                            { text: '매우 상쾌함', score: 0 },
-                            { text: '비교적 상쾌함', score: 1 },
-                            { text: '피곤함', score: 2 },
-                            { text: '매우 피곤함', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '낮 시간 동안 졸음을 느끼는 정도는?',
-                        options: [
-                            { text: '전혀 느끼지 않음', score: 0 },
-                            { text: '가끔 느낌', score: 1 },
-                            { text: '자주 느낌', score: 2 },
-                            { text: '항상 졸림', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '평균 수면 시간은?',
-                        options: [
-                            { text: '7-8시간', score: 0 },
-                            { text: '6-7시간', score: 1 },
-                            { text: '5-6시간', score: 2 },
-                            { text: '5시간 미만', score: 3 }
-                        ]
-                    }
-                ],
-                scoring: {
-                    low: { max: 5, level: '좋음', description: '수면의 질이 좋습니다. 현재 수면 패턴을 잘 유지하고 계십니다.' },
-                    medium: { max: 10, level: '보통', description: '수면의 질에 개선이 필요합니다. 수면 습관을 점검해보세요.' },
-                    high: { max: 15, level: '나쁨', description: '수면의 질이 좋지 않습니다. 수면 전문의와 상담을 권합니다.' }
-                },
-                recommendations: [
-                    '매일 같은 시간에 잠자리에 들기',
-                    '잠들기 2시간 전 스마트폰 사용 줄이기',
-                    '카페인 섭취는 오후 2시 이전에만',
-                    '침실을 어둡고 시원하게 유지하기',
-                    '규칙적인 운동하기 (잠들기 4시간 전까지)',
-                    '수면 전 독서나 명상으로 마음 진정시키기'
-                ]
-            },
-            exercise: {
-                title: '운동습관 진단',
-                questions: [
-                    {
-                        question: '주당 운동 횟수는?',
-                        options: [
-                            { text: '주 5회 이상', score: 3 },
-                            { text: '주 3-4회', score: 2 },
-                            { text: '주 1-2회', score: 1 },
-                            { text: '거의 하지 않음', score: 0 }
-                        ]
-                    },
-                    {
-                        question: '한 번 운동할 때 지속 시간은?',
-                        options: [
-                            { text: '1시간 이상', score: 3 },
-                            { text: '30분-1시간', score: 2 },
-                            { text: '15-30분', score: 1 },
-                            { text: '15분 미만', score: 0 }
-                        ]
-                    },
-                    {
-                        question: '운동 강도는 어느 정도입니까?',
-                        options: [
-                            { text: '고강도 (숨이 많이 참)', score: 3 },
-                            { text: '중강도 (약간 숨참)', score: 2 },
-                            { text: '저강도 (가벼움)', score: 1 },
-                            { text: '운동하지 않음', score: 0 }
-                        ]
-                    },
-                    {
-                        question: '일상생활에서 계단 이용 빈도는?',
-                        options: [
-                            { text: '항상 이용', score: 3 },
-                            { text: '자주 이용', score: 2 },
-                            { text: '가끔 이용', score: 1 },
-                            { text: '거의 이용 안함', score: 0 }
-                        ]
-                    },
-                    {
-                        question: '하루 중 앉아있는 시간은?',
-                        options: [
-                            { text: '4시간 미만', score: 3 },
-                            { text: '4-6시간', score: 2 },
-                            { text: '6-8시간', score: 1 },
-                            { text: '8시간 이상', score: 0 }
-                        ]
-                    }
-                ],
-                scoring: {
-                    low: { max: 5, level: '부족', description: '운동량이 부족합니다. 건강을 위해 신체활동을 늘려보세요.' },
-                    medium: { max: 10, level: '보통', description: '적당한 운동을 하고 계십니다. 조금 더 늘려보면 좋겠어요.' },
-                    high: { max: 15, level: '우수', description: '운동습관이 매우 좋습니다. 현재 상태를 잘 유지하세요.' }
-                },
-                recommendations: [
-                    '주 3회 이상 30분씩 유산소 운동하기',
-                    '근력 운동을 주 2회 이상 포함하기',
-                    '엘리베이터 대신 계단 이용하기',
-                    '한 시간마다 5분씩 스트레칭하기',
-                    '걷기나 자전거 타기로 일상 활동량 늘리기',
-                    '운동 일지 작성으로 동기부여 유지하기'
-                ]
-            },
-            nutrition: {
-                title: '식습관 진단',
-                questions: [
-                    {
-                        question: '하루 식사 횟수는?',
-                        options: [
-                            { text: '규칙적으로 3끼', score: 3 },
-                            { text: '대부분 3끼', score: 2 },
-                            { text: '2끼 정도', score: 1 },
-                            { text: '불규칙하게 1-2끼', score: 0 }
-                        ]
-                    },
-                    {
-                        question: '야식 섭취 빈도는?',
-                        options: [
-                            { text: '거의 안 먹음', score: 3 },
-                            { text: '주 1-2회', score: 2 },
-                            { text: '주 3-4회', score: 1 },
-                            { text: '거의 매일', score: 0 }
-                        ]
-                    },
-                    {
-                        question: '과일과 채소 섭취량은?',
-                        options: [
-                            { text: '매끼 충분히', score: 3 },
-                            { text: '하루 2-3번', score: 2 },
-                            { text: '하루 1번', score: 1 },
-                            { text: '거의 안 먹음', score: 0 }
-                        ]
-                    },
-                    {
-                        question: '패스트푸드나 인스턴트 음식 섭취 빈도는?',
-                        options: [
-                            { text: '거의 안 먹음', score: 3 },
-                            { text: '주 1-2회', score: 2 },
-                            { text: '주 3-4회', score: 1 },
-                            { text: '거의 매일', score: 0 }
-                        ]
-                    },
-                    {
-                        question: '하루 물 섭취량은?',
-                        options: [
-                            { text: '8잔 이상 (2L)', score: 3 },
-                            { text: '6-7잔', score: 2 },
-                            { text: '4-5잔', score: 1 },
-                            { text: '3잔 이하', score: 0 }
-                        ]
-                    }
-                ],
-                scoring: {
-                    low: { max: 5, level: '개선필요', description: '식습관 개선이 시급합니다. 영양 상담을 받아보시길 권합니다.' },
-                    medium: { max: 10, level: '보통', description: '평균적인 식습관입니다. 몇 가지만 개선하면 더 건강해집니다.' },
-                    high: { max: 15, level: '우수', description: '매우 건강한 식습관을 가지고 계십니다. 현재 상태를 유지하세요.' }
-                },
-                recommendations: [
-                    '규칙적인 식사 시간 지키기',
-                    '하루 5가지 색깔의 과일과 채소 섭취하기',
-                    '가공식품보다는 자연식품 선택하기',
-                    '충분한 수분 섭취하기 (하루 8잔 이상)',
-                    '천천히 꼭꼭 씹어서 먹기',
-                    '야식과 과식 피하기'
-                ]
-            },
-            digital: {
-                title: '디지털 웰빙 진단',
-                questions: [
-                    {
-                        question: '하루 스마트폰 사용 시간은?',
-                        options: [
-                            { text: '2시간 미만', score: 0 },
-                            { text: '2-4시간', score: 1 },
-                            { text: '4-6시간', score: 2 },
-                            { text: '6시간 이상', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '잠들기 전 스마트폰 사용 빈도는?',
-                        options: [
-                            { text: '거의 사용 안함', score: 0 },
-                            { text: '가끔 사용', score: 1 },
-                            { text: '자주 사용', score: 2 },
-                            { text: '매일 사용', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '스마트폰 없이 있으면 불안감을 느끼나요?',
-                        options: [
-                            { text: '전혀 느끼지 않음', score: 0 },
-                            { text: '조금 느낌', score: 1 },
-                            { text: '많이 느낌', score: 2 },
-                            { text: '극도로 불안함', score: 3 }
-                        ]
-                    },
-                    {
-                        question: '식사 중 스마트폰 사용 빈도는?',
-                        options: [
-                            { text: '거의 사용 안함', score: 0 },
-                            { text: '가끔 사용', score: 1 },
-                            { text: '자주 사용', score: 2 },
-                            { text: '항상 사용', score: 3 }
-                        ]
-                    },
-                    {
-                        question: 'SNS 확인 빈도는?',
-                        options: [
-                            { text: '하루 1-2번', score: 0 },
-                            { text: '하루 3-5번', score: 1 },
-                            { text: '하루 10번 이상', score: 2 },
-                            { text: '수시로 확인', score: 3 }
-                        ]
-                    }
-                ],
-                scoring: {
