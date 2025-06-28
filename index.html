@@ -258,62 +258,6 @@
     </div>
 
     <script>
-        // 워드프레스 블로그 URL 설정
-        const BLOG_BASE_URL = 'https://bodyandwell.com';
-        
-        // 각 진단별 워드프레스 글 URL 매핑
-        const diagnosisUrls = {
-            'thyroid-hyper': `${}/thyroid-hyperthyroidism-diagnosis`,
-            'thyroid-hypo': `${BLOG_BASE_URL}/thyroid-hypothyroidism-diagnosis`,
-            'diabetes': `${BLOG_BASE_URL}/diabetes-diagnosis`,
-            'hypertension': `${BLOG_BASE_URL}/hypertension-diagnosis`,
-            'depression': `${BLOG_BASE_URL}/depression-diagnosis`,
-            'anxiety': `${BLOG_BASE_URL}/anxiety-disorder-diagnosis`,
-            'panic': `${BLOG_BASE_URL}/panic-disorder-diagnosis`,
-            'adhd': `${BLOG_BASE_URL}/adhd-diagnosis`,
-            'dementia': `${BLOG_BASE_URL}/dementia-early-symptoms-diagnosis`,
-            'osteoporosis': `${BLOG_BASE_URL}/osteoporosis-diagnosis`,
-            'arthritis': `${BLOG_BASE_URL}/arthritis-diagnosis`,
-            'gastritis': `${BLOG_BASE_URL}/gastritis-diagnosis`,
-            'gerd': `${BLOG_BASE_URL}/gerd-diagnosis`,
-            'ibs': `${BLOG_BASE_URL}/ibs-diagnosis`,
-            'migraine': `${BLOG_BASE_URL}/migraine-diagnosis`,
-            'sleep-apnea': `${BLOG_BASE_URL}/sleep-apnea-diagnosis`,
-            'insomnia': `${BLOG_BASE_URL}/insomnia-diagnosis`,
-            'asthma': `${BLOG_BASE_URL}/asthma-diagnosis`,
-            'copd': `${BLOG_BASE_URL}/copd-diagnosis`,
-            'allergic-rhinitis': `${BLOG_BASE_URL}/allergic-rhinitis-diagnosis`,
-            'atopic-dermatitis': `${BLOG_BASE_URL}/atopic-dermatitis-diagnosis`,
-            'psoriasis': `${BLOG_BASE_URL}/psoriasis-diagnosis`,
-            'hair-loss': `${BLOG_BASE_URL}/hair-loss-diagnosis`,
-            'fatty-liver': `${BLOG_BASE_URL}/fatty-liver-diagnosis`,
-            'kidney-disease': `${BLOG_BASE_URL}/kidney-disease-diagnosis`,
-            'anemia': `${BLOG_BASE_URL}/anemia-diagnosis`,
-            'heart-disease': `${BLOG_BASE_URL}/heart-disease-diagnosis`,
-            'stroke-risk': `${BLOG_BASE_URL}/stroke-risk-diagnosis`,
-            'varicose-veins': `${BLOG_BASE_URL}/varicose-veins-diagnosis`,
-            'carpal-tunnel': `${BLOG_BASE_URL}/carpal-tunnel-diagnosis`,
-            'herniated-disc': `${BLOG_BASE_URL}/herniated-disc-diagnosis`,
-            'cervical-disc': `${BLOG_BASE_URL}/cervical-disc-diagnosis`,
-            'frozen-shoulder': `${BLOG_BASE_URL}/frozen-shoulder-diagnosis`,
-            'plantar-fasciitis': `${BLOG_BASE_URL}/plantar-fasciitis-diagnosis`,
-            'menopause': `${BLOG_BASE_URL}/menopause-symptoms-diagnosis`,
-            'pcos': `${BLOG_BASE_URL}/pcos-diagnosis`,
-            'endometriosis': `${BLOG_BASE_URL}/endometriosis-diagnosis`,
-            'prostate': `${BLOG_BASE_URL}/prostate-disease-diagnosis`,
-            'erectile-dysfunction': `${BLOG_BASE_URL}/erectile-dysfunction-diagnosis`,
-            'eye-strain': `${BLOG_BASE_URL}/dry-eye-syndrome-diagnosis`
-        };
-
-        // 진단 페이지 열기
-        function openDiagnosis(type) {
-            if (diagnosisUrls[type]) {
-                window.location.href = diagnosisUrls[type];
-            } else {
-                alert('해당 진단 페이지를 준비 중입니다. 곧 서비스를 시작할 예정입니다!');
-            }
-        }
-
         // 페이지 로드 시 초기화
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🔒 개인정보 보호: 모든 데이터는 브라우저에서만 처리됩니다.');
